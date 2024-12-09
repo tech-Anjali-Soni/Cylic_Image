@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Carousel</title>
+    <style>
+        #carousel { width: 300px; height:200px; overflow: hidden; margin: auto; }
+            #carousel img { width: 100%; height: auto; display: none;}
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="carousel">
+        <img src="image1.jpg" alt="Image 1">
+        <img src="image2.jpg" alt="Image 2">
+        <img src="image3.jpg" alt="Image 3">
+        <img src="image4.jpg" alt="Image 4">
+    </div>
+    <script>
+        $(document).ready( function (){
+            var images = $("#carousel img");
+            var currentIndex = 0;
+            var delay = 2000;
+            function showNextImage() {
+                images.eq(currentIndex).fadeOut(function() {
+                    currentIndex = (currentIndex +1)% images.length;
+                    images.eq(currentIndex).fadeIn();
+                });
+            }
+            images.eq(currentIndex).show();
+            setInterval(showNextImage, delay);
+        })
+    </script>
+</body>
+</html>
